@@ -1,4 +1,4 @@
-package app.tauri.shared
+package app.tauri.share-target
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("app.tauri.shared", appContext.packageName)
+        assertEquals("app.tauri.share-target", appContext.packageName)
     }
 }

@@ -17,7 +17,7 @@ Default permissions for the plugin
 <tr>
 <td>
 
-`shared:allow-ping`
+`share-target:allow-ping`
 
 </td>
 <td>
@@ -30,7 +30,7 @@ Enables the ping command without any pre-configured scope.
 <tr>
 <td>
 
-`shared:deny-ping`
+`share-target:deny-ping`
 
 </td>
 <td>
@@ -43,7 +43,7 @@ Denies the ping command without any pre-configured scope.
 <tr>
 <td>
 
-`shared:allow-registerListener`
+`share-target:allow-registerListener`
 
 </td>
 <td>
@@ -56,7 +56,7 @@ Enables the registerListener command without any pre-configured scope.
 <tr>
 <td>
 
-`shared:deny-registerListener`
+`share-target:deny-registerListener`
 
 </td>
 <td>

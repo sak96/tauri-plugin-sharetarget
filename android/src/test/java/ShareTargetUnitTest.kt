@@ -1,4 +1,4 @@
-package app.tauri.shared
+package app.tauri.share-target
 
 import org.junit.Test
 

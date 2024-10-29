@@ -1,4 +1,4 @@
-# Tauri Plugin shared
+# Tauri Plugin share-target
 A plugin for Tauri applications to appear as a share target under Android.
 Behaviour on other platforms is indeterminate. Support is limited to the [`Intent`](https://developer.android.com/reference/android/content/Intent)'s
 URI, attached `Bundle`s are dropped. You were warned.
@@ -7,14 +7,14 @@ URI, attached `Bundle`s are dropped. You were warned.
 In `src-tauri/Cargo.toml` :
 ``` toml 
 [dependencies]
-tauri-plugin-shared = 0.1.0
+tauri-plugin-share-target = 0.1.0
 ```
 In `src-tauri/src/lib.rs`, add the plugin entry :
 ``` rust 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_shared::init())
+        .plugin(tauri_plugin_share_target::init())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -42,7 +42,7 @@ In `src-tauri/gen/android/app/src/main/AndroidManifest.xml`, add your `intent-fi
 
 ## Authorization
 First you need permissions, just to get ipc events in javascript.
-In `src-tauri/capabilities/default.json`, add `shared` to the permissions :
+In `src-tauri/capabilities/default.json`, add `share-target` to the permissions :
 ``` json
 {
     "$schema": "../gen/schemas/desktop-schema.json",
@@ -50,7 +50,7 @@ In `src-tauri/capabilities/default.json`, add `shared` to the permissions :
     "windows": ["main"],
     "permissions": [
         ...
-        "shared:default"
+        "share-target:default"
     ]
 }
 ```

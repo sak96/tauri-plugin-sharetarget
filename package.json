@@ -1,5 +1,5 @@
 {
-  "name": "tauri-plugin-shared",
+  "name": "tauri-plugin-share-target-api",
   "version": "0.1.0",
   "author": "la Fleur <lafleur@boum.org>",
   "description": "receive share intents on Android",

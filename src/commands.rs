@@ -2,12 +2,12 @@ use tauri::{AppHandle, command, Runtime};
 
 use crate::models::*;
 use crate::Result;
-use crate::SharedExt;
+use crate::ShareTargetExt;
 
 #[command]
 pub(crate) async fn ping<R: Runtime>(
     app: AppHandle<R>,
     payload: PingRequest,
 ) -> Result<PingResponse> {
-    app.shared().ping(payload)
+    app.share_target().ping(payload)
 }

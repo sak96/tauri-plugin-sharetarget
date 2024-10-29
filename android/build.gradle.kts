@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "app.tauri.shared"
+    namespace = "app.tauri.share-target"
     compileSdk = 34
 
     defaultConfig {
