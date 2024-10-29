@@ -1,8 +1,8 @@
-package app.tauri.shared
+package app.tauri.sharetarget
 
 import android.util.Log
 
-class Shared {
+class ShareTarget {
     fun pong(value: String): String {
         Log.i("Pong", value)
         return value

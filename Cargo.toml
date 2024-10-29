@@ -1,12 +1,12 @@
 [package]
-name = "tauri-plugin-shared"
+name = "tauri-plugin-sharetarget"
 version = "0.1.0"
 authors = [ "la Fleur <lafleur@boum.org>" ]
 description = "receive share intents on Android"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
-links = "tauri-plugin-shared"
+links = "tauri-plugin-sharetarget"
 
 [dependencies]
 tauri = { version = "2.0.6" }

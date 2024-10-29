@@ -1,4 +1,4 @@
-package app.tauri.shared
+package app.tauri.sharetarget
 
 import android.app.Activity
 import app.tauri.annotation.Command
@@ -16,8 +16,8 @@ class PingArgs {
 }
 
 @TauriPlugin
-class SharedPlugin(private val activity: Activity): Plugin(activity) {
-    private val implementation = Shared()
+class ShareTargetPlugin(private val activity: Activity): Plugin(activity) {
+    private val implementation = ShareTarget()
 
     @Command
     fun ping(invoke: Invoke) {

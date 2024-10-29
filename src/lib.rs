@@ -16,32 +16,32 @@ mod models;
 pub use error::{Error, Result};
 
 #[cfg(desktop)]
-use desktop::Shared;
+use desktop::ShareTarget;
 #[cfg(mobile)]
-use mobile::Shared;
+use mobile::ShareTarget;
 
 
-/// Extensions to [`tauri::App`], [`tauri::AppHandle`] and [`tauri::Window`] to access the shared APIs.
-pub trait SharedExt<R: Runtime> {
-    fn shared(&self) -> &Shared<R>;
+/// Extensions to [`tauri::App`], [`tauri::AppHandle`] and [`tauri::Window`] to access the sharetarget APIs.
+pub trait ShareTargetExt<R: Runtime> {
+    fn sharetarget(&self) -> &ShareTarget<R>;
 }
 
-impl<R: Runtime, T: Manager<R>> crate::SharedExt<R> for T {
-    fn shared(&self) -> &Shared<R> {
-        self.state::<Shared<R>>().inner()
+impl<R: Runtime, T: Manager<R>> crate::ShareTargetExt<R> for T {
+    fn sharetarget(&self) -> &ShareTarget<R> {
+        self.state::<ShareTarget<R>>().inner()
     }
 }
 
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
-    Builder::new("shared")
+    Builder::new("sharetarget")
         .invoke_handler(tauri::generate_handler![commands::ping])
         .setup(|app, api| {
             #[cfg(mobile)]
-            let shared = mobile::init(app, api)?;
+            let sharetarget = mobile::init(app, api)?;
             #[cfg(desktop)]
-            let shared = desktop::init(app, api)?;
-            app.manage(shared);
+            let sharetarget = desktop::init(app, api)?;
+            app.manage(sharetarget);
             Ok(())
         })
         .build()
