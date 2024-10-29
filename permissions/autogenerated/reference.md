@@ -3,7 +3,7 @@
 Default permissions for the plugin
 
 - `allow-ping`
-- `allow-registerListener`
+- `allow-register-listener`
 
 ## Permission Table
 
@@ -36,6 +36,32 @@ Enables the ping command without any pre-configured scope.
 <td>
 
 Denies the ping command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`share-target:allow-register-listener`
+
+</td>
+<td>
+
+Enables the register-listener command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`share-target:deny-register-listener`
+
+</td>
+<td>
+
+Denies the register-listener command without any pre-configured scope.
 
 </td>
 </tr>

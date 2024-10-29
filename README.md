@@ -66,7 +66,7 @@ function App() {
     useEffect(() => {
         let listener: PluginListener;
         addPluginListener(
-            'shared',
+            'share-target',
             'share',
             (event: { url: string }) => { setLogs(event.url) }
         ).then((l: PluginListener) => {

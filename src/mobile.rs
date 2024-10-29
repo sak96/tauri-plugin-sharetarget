@@ -8,7 +8,7 @@ use tauri::{
 use crate::models::*;
 
 #[cfg(target_os = "ios")]
-tauri::ios_plugin_binding!(init_plugin_shared);
+tauri::ios_plugin_binding!(init_plugin_share_target);
 
 /// Access to the share_target APIs.
 pub struct ShareTarget<R: Runtime>(PluginHandle<R>);
@@ -43,13 +43,13 @@ fn _init_share_watcher<R: Runtime, C: DeserializeOwned>(
     #[cfg(target_os = "android")]
     {
         use tauri::ipc::InvokeResponseBody;
-        let handle = api.register_android_plugin("app.tauri.share-target", "ShareTargetPlugin")?;
+        let handle = api.register_android_plugin("app.tauri.shareTarget", "ShareTargetPlugin")?;
         let app_handle = app.clone();
         if let Err(error) = handle.run_mobile_plugin::<()>(
             "setShareEventsHandler",
             ShareWatcher {
                 channel: Channel::new(move |event| {
-                    eprintln!("share_target plugin: received pre-event");
+                    eprintln!("shareTarget plugin: received pre-event");
                     let payload = match event {
                         InvokeResponseBody::Json(payload) =>
                             serde_json::from_str::<ShareEvent>(&payload).ok(),
@@ -57,7 +57,7 @@ fn _init_share_watcher<R: Runtime, C: DeserializeOwned>(
                     };
                     use tauri::Emitter;
 
-                    eprintln!("share_target plugin: received event, emitting it");
+                    eprintln!("shareTarget plugin: received event, emitting it");
                     //trigger("share-event", vec![payload]);
                     let _res = app_handle.emit("share-event", vec![payload]);
                     eprintln!("sent share_event: ${_res:?}");
@@ -74,7 +74,7 @@ fn _init_share_watcher<R: Runtime, C: DeserializeOwned>(
 
     #[cfg(target_os = "ios")]
     {
-        let handle = api.register_ios_plugin(init_plugin_shared)?;
+        let handle = api.register_ios_plugin(init_plugin_share_target)?;
         unimplemented!();
     }
 }
@@ -84,7 +84,7 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
     _app: &AppHandle<R>,
     _api: PluginApi<R, C>,
 ) -> crate::Result<ShareTarget<R>> {
-    let handle = _api.register_android_plugin("app.tauri.share_target", "ShareTargetPlugin")?;
+    let handle = _api.register_android_plugin("app.tauri.shareTarget", "ShareTargetPlugin")?;
     Ok(ShareTarget(handle))
 
     // Alternatively, deploy a Channel :

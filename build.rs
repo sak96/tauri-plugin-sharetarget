@@ -1,4 +1,4 @@
-const COMMANDS: &[&str] = &["ping", "registerListener"];
+const COMMANDS: &[&str] = &["ping", "register-listener"];
 
 fn main() {
   tauri_plugin::Builder::new(COMMANDS)

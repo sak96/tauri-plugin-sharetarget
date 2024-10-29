@@ -1,4 +1,4 @@
-package app.tauri.share-target
+package app.tauri.shareTarget
 
 import android.util.Log
 
