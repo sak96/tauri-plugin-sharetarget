@@ -57,24 +57,20 @@ In `src-tauri/capabilities/default.json`, add `sharetarget` to the permissions :
 ```
 
 ## Usage
-For example in React, in `src/main.tsx` :
+Use the provided API in javascript/typescript. For example in React, in `src/main.tsx` :
 ``` tsx
-import { useEffect, useState } from "react";
-import { addPluginListener } from '@tauri-apps/api/core';
+import { useEffect, useState } from 'react';
+import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
 
 function App() {
-    const [logs, setLogs] = useState("");
+    const [logs, setLogs] = useState('');
     useEffect(() => {
+        // Twisted initialization to satisfy returning a sync destructor (React+ts demand).
         let listener: PluginListener;
-        addPluginListener(
-            'sharetarget',
-            'share',
-            (event: { url: string }) => { setLogs(event.url) }
-        ).then((l: PluginListener) => {
-            listener = l;
-        };
-        return () => { listener?.unregister() };
-    });
+        listenForShareEvents((intent: ShareEvent) => { setLogs(intent.uri); })
+            .then((l: PluginListener) => { listener = l; });
+        return () => { listener?.unregister(); };
+    };
     return (<>
         <h3>Share this</h3>
         <p>{ logs }</p>
