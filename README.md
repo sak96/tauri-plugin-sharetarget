@@ -19,8 +19,9 @@ pub fn run() {
         .expect("error while running tauri application");
 }
 ```
-When you first build for Android, some files get generated. To signal your app
-as a share target to Android, you need to modify your [`AndroidManifest.xml`](https://developer.android.com/guide/topics/manifest/manifest-intro).
+To build for Android, you must first `tauri android init` successfully. This gets some files
+generated. To signal your app as a share target to Android, you then need to modify your
+[`AndroidManifest.xml`](https://developer.android.com/guide/topics/manifest/manifest-intro).
 In `src-tauri/gen/android/app/src/main/AndroidManifest.xml`, add your `intent-filter`s :
 ``` xml
 <?xml version="1.0" encoding="utf-8">
