@@ -1,6 +1,6 @@
 # Tauri Plugin shared
 A plugin for Tauri applications to appear as a share target under Android.
-Behaviour on other platforms is indeterminate. Support is limited to the `Intent`'s
+Behaviour on other platforms is indeterminate. Support is limited to the [`Intent`](https://developer.android.com/reference/android/content/Intent)'s
 URI, attached `Bundle`s are dropped. You were warned.
 
 ## Installation
@@ -20,7 +20,7 @@ pub fn run() {
 }
 ```
 When you first build for Android, some files get generated. To signal your app
-as a share target to Android, you need to modify your `AndroidManifest.xml`.
+as a share target to Android, you need to modify your [`AndroidManifest.xml`](https://developer.android.com/guide/topics/manifest/manifest-intro).
 In `src-tauri/gen/android/app/src/main/AndroidManifest.xml`, add your `intent-filter`s :
 ``` xml
 <?xml version="1.0" encoding="utf-8">
@@ -56,7 +56,7 @@ In `src-tauri/capabilities/default.json`, add `shared` to the permissions :
 ```
 
 ## Usage
-In eg `src/main.tsx` :
+For example in React, in `src/main.tsx` :
 ``` tsx
 import { useEffect, useState } from "react";
 import { addPluginListener } from '@tauri-apps/api/core';
