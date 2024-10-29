@@ -28,6 +28,7 @@ class ShareTargetPlugin(private val activity: Activity): Plugin(activity) {
         invoke.resolve(ret)
     }
 
+    /// Send all new intents to registered listeners.
     override fun onNewIntent(intent: Intent) {
         if (intent?.action == Intent.ACTION_SEND) {
             val payload = intentToJson(intent)

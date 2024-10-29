@@ -27,12 +27,13 @@ pub trait ShareTargetExt<R: Runtime> {
 }
 
 impl<R: Runtime, T: Manager<R>> crate::ShareTargetExt<R> for T {
+    /// Get the `ShareTarget` handler.
     fn sharetarget(&self) -> &ShareTarget<R> {
         self.state::<ShareTarget<R>>().inner()
     }
 }
 
-/// Initializes the plugin.
+/// Initialize the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("sharetarget")
         .invoke_handler(tauri::generate_handler![commands::ping])

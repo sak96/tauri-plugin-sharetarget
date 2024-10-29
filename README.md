@@ -61,6 +61,7 @@ Use the provided API in javascript/typescript. For example in React, in `src/mai
 ``` tsx
 import { useEffect, useState } from 'react';
 import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
+import { PluginListener } from '@tauri-apps/api/core';
 
 function App() {
     const [logs, setLogs] = useState('');
