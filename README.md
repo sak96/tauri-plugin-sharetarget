@@ -1,13 +1,13 @@
 # Tauri Plugin sharetarget
 A plugin for Tauri applications to appear as a share target under Android.
-Behaviour on other platforms is indeterminate. Support is limited to the [`Intent`](https://developer.android.com/reference/android/content/Intent)'s
-URI, attached `Bundle`s are dropped. You were warned.
+Behaviour on other platforms is indeterminate. It doesn't support multi-selection
+share at the moment.
 
 ## Installation
 In `src-tauri/Cargo.toml` :
 ``` toml 
 [dependencies]
-tauri-plugin-sharetarget = 0.1.0
+tauri-plugin-sharetarget = 0.1.1
 ```
 In `src-tauri/src/lib.rs`, add the plugin entry :
 ``` rust 
