@@ -10,10 +10,16 @@ export async function ping(value: string): Promise<string | null> {
   }).then((r) => (r.value ? r.value : null));
 }
 
-/** A ShareEvent intent imported from Android. Note that all Bundle attachments are dropped.
- * Please fork and adapt to your liking.
+/** A ShareEvent intent imported from Android. The filename is not implemented, sorry.
 */
 export type ShareEvent = {
+    /** the name of the intent's target file */
+    name?: string,
+    /** the streamable uri to the target contents */
+    stream?: string,
+    /** the target file's MIME type */
+    content_type?: string,
+    /** the complete URI for the Android Intent (with action, type, etc.) */
     uri: string,
 }
 
