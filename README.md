@@ -41,8 +41,8 @@ In `src-tauri/gen/android/app/src/main/AndroidManifest.xml`, add your `intent-fi
         ...
 ```
 
-## Authorization
-First you need permissions, just to get ipc events in javascript.
+## Permissions
+First you need permissions in tauri, just to get ipc events in javascript.
 In `src-tauri/capabilities/default.json`, add `sharetarget` to the permissions :
 ``` json
 {
@@ -79,3 +79,16 @@ function App() {
     </>);
 }
 ```
+
+### Receive attached stream (images, etc)
+To receive shared images, you need
+  - an `intent` targeting `image/*`
+  - `tauri-plugin-fs` to read sent data
+  - add `fs:default` to the capabilities of your app
+  - in javascript, use `readFile()` from `@tauri-apps/plugin-fs` on the
+  intent's `stream`
+
+`readFile()` will return binary data, you just need to process it.
+
+Unfortunately, multiple shares are not supported right now. PR welcome !
+
