@@ -1,7 +1,7 @@
 [package]
 name = "tauri-plugin-sharetarget"
 description = "tauri apps: receive share intents on Android"
-version = "0.1.1"
+version = "0.1.2"
 license = "GPL-2.0-or-later"
 keywords = [ "tauri-plugin", "share" ]
 categories = [ "gui", "web-programming" ]
