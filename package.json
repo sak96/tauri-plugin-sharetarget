@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "pnpm build",
-    "pretest": "pnpm build",
+    "prepublishOnly": "yarn build",
+    "pretest": "yarn build",
     "tauri": "tauri"
   },
   "dependencies": {
