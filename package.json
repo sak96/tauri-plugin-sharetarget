@@ -1,8 +1,9 @@
 {
   "name": "tauri-plugin-sharetarget",
   "version": "0.1.1",
+  "license": "GPLv2-or-later",
   "author": "la Fleur <lafleur@boum.org>",
-  "description": "receive share intents on Android",
+  "description": "tauri apps: receive share intents on Android",
   "type": "module",
   "types": "./dist-js/index.d.ts",
   "main": "./dist-js/index.cjs",
