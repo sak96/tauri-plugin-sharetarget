@@ -1,16 +1,19 @@
 [package]
 name = "tauri-plugin-sharetarget"
+description = "tauri apps: receive share intents on Android"
 version = "0.1.1"
+license = "GPL-2.0-or-later"
+keywords = [ "tauri-plugin", "share" ]
+categories = [ "gui", "web-programming" ]
 authors = [ "la Fleur <lafleur@boum.org>" ]
-description = "receive share intents on Android"
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
 links = "tauri-plugin-sharetarget"
+repository = "https://gitlab.com/lafleurdeboum/tauri-plugin-sharetarget"
 
 [dependencies]
 tauri = { version = "2.0.6" }
-
 serde = "1.0"
 serde_json = "1"
 thiserror = "1.0"
@@ -18,3 +21,6 @@ thiserror = "1.0"
 [build-dependencies]
 tauri-plugin = { version = "2.0.1", features = ["build"] }
 tauri-build = "2.0.1"
+
+[worspace]
+members = [ "examples/*/src-tauri" ]
