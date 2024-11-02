@@ -7,8 +7,9 @@ share at the moment.
 In `src-tauri/Cargo.toml` :
 ``` toml 
 [dependencies]
-tauri-plugin-sharetarget = 0.1.1
+tauri-plugin-sharetarget = "LATEST_VERSION_HERE"
 ```
+
 In `src-tauri/src/lib.rs`, add the plugin entry :
 ``` rust 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -19,6 +20,7 @@ pub fn run() {
         .expect("error while running tauri application");
 }
 ```
+
 To build for Android, you must first `tauri android init` successfully. This gets some files
 generated. To signal your app as a share target to Android, you then need to modify your
 [`AndroidManifest.xml`](https://developer.android.com/guide/topics/manifest/manifest-intro).
@@ -58,7 +60,7 @@ In `src-tauri/capabilities/default.json`, add `sharetarget` to the permissions :
 
 ## Usage
 Use the provided API in javascript/typescript. For example in React, in `src/main.tsx` :
-``` tsx
+``` typescriptreact
 import { useEffect, useState } from 'react';
 import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
 import { PluginListener } from '@tauri-apps/api/core';
@@ -94,7 +96,7 @@ Here is the previous example revamped to fetch binary contents. `Upload({ file }
 is not implemented because users may do whatever they like with the `File` object.
 This just showcases how to grab the binary data.
 
-``` tsx
+``` typescriptreact
 import { useEffect, useState } from 'react';
 import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
 import { PluginListener } from '@tauri-apps/api/core';
@@ -115,7 +117,7 @@ function App() {
                     setFile(new File([contents], intent.name, { type: intent.content_type }));
                 } else {
                     // This intent contains no binary bundle.
-                    console.warn('unused share intent', JSON.stringify(intent, null, 4));
+                    console.warn('unused share intent', intent.uri);
                 }
                 setLogs(intent.uri);
             });
@@ -130,5 +132,6 @@ function App() {
 }
 ```
 
-Unfortunately, multiple shares are not supported right now. PR welcome !
+### Caveats
+Unfortunately, multiple files in a single share intent are not supported right now. PRs welcome !
 
