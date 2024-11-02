@@ -66,10 +66,12 @@ import { PluginListener } from '@tauri-apps/api/core';
 function App() {
     const [logs, setLogs] = useState('');
     useEffect(() => {
-        // Twisted initialization to satisfy returning a sync destructor (React+ts demand).
         let listener: PluginListener;
-        listenForShareEvents((intent: ShareEvent) => { setLogs(intent.uri); })
-            .then((l: PluginListener) => { listener = l; });
+        const setupListener = async () => {
+            listener = await listenForShareEvents((intent: ShareEvent) => {
+                setLogs(intent.uri);
+            });
+        };
         return () => { listener?.unregister(); };
     };
     return (<>
@@ -83,12 +85,50 @@ function App() {
 ### Receive attached stream (images, etc)
 To receive shared images, you need
   - an `intent` targeting `image/*`
-  - `tauri-plugin-fs` to read sent data
-  - add `fs:default` to the capabilities of your app
+  - `@tauri-apps/plugin-fs` in `package.json` dependencies to read the sent data
+  - `fs:default` in the capabilities of your app
   - in javascript, use `readFile()` from `@tauri-apps/plugin-fs` on the
-  intent's `stream`
+  intent's `stream`.
 
-`readFile()` will return binary data, you just need to process it.
+Here is the previous example revamped to fetch binary contents. `Upload({ file })`
+is not implemented because users may do whatever they like with the `File` object.
+This just showcases how to grab the binary data.
+
+``` tsx
+import { useEffect, useState } from 'react';
+import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
+import { PluginListener } from '@tauri-apps/api/core';
+import { readFile } from '@tauri-apps/plugin-fs';
+
+function App() {
+    const [logs, setLogs] = useState('');
+    const [file, setFile] = useState<File>();
+    useEffect(() => {
+        let listener: PluginListener;
+        const setupListener = async () => {
+            listener = await listenForShareEvents(async (intent: ShareEvent) => {
+                if(event.stream) {
+                    const contents = await readFile(intent.stream).catch((error: Error) => {
+                        console.warn('fetching shared content failed:');
+                        throw error;
+                    });
+                    setFile(new File([contents], intent.name, { type: intent.content_type }));
+                } else {
+                    // This intent contains no binary bundle.
+                    console.warn('unused share intent', JSON.stringify(intent, null, 4));
+                }
+                setLogs(intent.uri);
+            });
+        };
+        setupListener();
+        return () => { listener?.unregister(); };
+    };
+    return (<>
+        <h3>Sharing { intent.name }</h3>
+        <Upload file={ file } />
+    </>);
+}
+```
 
 Unfortunately, multiple shares are not supported right now. PR welcome !
 
