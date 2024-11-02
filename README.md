@@ -1,4 +1,9 @@
 # Tauri Plugin sharetarget
+
+![NPM Version](https://img.shields.io/npm/v/tauri-plugin-sharetarget-api)
+![NPM Downloads](https://img.shields.io/npm/dm/tauri-plugin-sharetarget-api)
+[![Documentation](https://docs.rs/tauri-plugin-sharetarget/badge.svg)](https://docs.rs/tauri-plugin-sharetarget)
+
 A plugin for Tauri applications to appear as a share target under Android.
 Behaviour on other platforms is indeterminate. It doesn't support multi-selection
 share at the moment.
