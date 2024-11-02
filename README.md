@@ -4,9 +4,7 @@
 ![NPM Downloads](https://img.shields.io/npm/dm/tauri-plugin-sharetarget-api)
 [![Documentation](https://docs.rs/tauri-plugin-sharetarget/badge.svg)](https://docs.rs/tauri-plugin-sharetarget)
 
-A plugin for Tauri applications to appear as a share target under Android.
-Behaviour on other platforms is indeterminate. It doesn't support multi-selection
-share at the moment.
+A plugin for Tauri applications to appear as a share target under Android. Desktop OSes are unsupported (they lack the feature). Behaviour on iOs is indeterminate.
 
 ## Installation
 In `src-tauri/Cargo.toml` :
@@ -67,7 +65,7 @@ In `src-tauri/capabilities/default.json`, add `sharetarget` to the permissions :
 Use the provided API in javascript/typescript. For example in React, in `src/main.tsx` :
 ``` typescriptreact
 import { useEffect, useState } from 'react';
-import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
+import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget-api';
 import { PluginListener } from '@tauri-apps/api/core';
 
 function App() {
@@ -103,7 +101,7 @@ This just showcases how to grab the binary data.
 
 ``` typescriptreact
 import { useEffect, useState } from 'react';
-import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget';
+import { listenForShareEvents, type ShareEvent } from 'tauri-plugin-sharetarget-api';
 import { PluginListener } from '@tauri-apps/api/core';
 import { readFile } from '@tauri-apps/plugin-fs';
 
@@ -138,5 +136,6 @@ function App() {
 ```
 
 ### Caveats
-Unfortunately, multiple files in a single share intent are not supported right now. PRs welcome !
+Unfortunately, multiple files in a single share intent are not supported right now. iOs is also
+unsupported - I don't have the platform. PRs welcome !
 
