@@ -13,6 +13,7 @@ links = "tauri-plugin-sharetarget"
 repository = "https://gitlab.com/lafleurdeboum/tauri-plugin-sharetarget"
 
 [package.metadata.docs.rs]
+rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
