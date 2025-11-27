@@ -1,4 +1,4 @@
-const COMMANDS: &[&str] = &["ping", "register_listener"];
+const COMMANDS: &[&str] = &["ping", "register_listener", "remove_listener"];
 
 fn main() {
     // Do not build when processed by docs.rs.

@@ -6,6 +6,7 @@ Default permissions for the plugin
 
 - `allow-ping`
 - `allow-register-listener`
+- `allow-remove-listener`
 
 ## Permission Table
 
@@ -64,6 +65,32 @@ Enables the register_listener command without any pre-configured scope.
 <td>
 
 Denies the register_listener command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sharetarget:allow-remove-listener`
+
+</td>
+<td>
+
+Enables the remove_listener command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`sharetarget:deny-remove-listener`
+
+</td>
+<td>
+
+Denies the remove_listener command without any pre-configured scope.
 
 </td>
 </tr>
